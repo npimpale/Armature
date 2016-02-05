@@ -88,7 +88,6 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.checkProductExistsWithVersion(productName, version);
 	}
 
-	@Override
 	public Product getProductById(Long productId) throws Exception {
 		Product product = null;
 		try {

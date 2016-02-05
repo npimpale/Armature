@@ -8,6 +8,10 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
 import com.persistent.securityPractice.armature.dao.mapper.ProductMapper;
@@ -29,7 +33,6 @@ public class ProductDAOImpl implements ProductDAO {
 				.withTableName("central_tracker.product_info").usingGeneratedKeyColumns("id");
 	}
 
-	@Override
 	public Product getProductByProject(long id) {
 		return namedParaJdbcTemplate.queryForObject(
 				ProductQueries.GET_PRODUCT_BY_PROJECT_ID,
@@ -37,7 +40,6 @@ public class ProductDAOImpl implements ProductDAO {
 				new ProductMapper());
 	}
 
-	@Override
 	public Product getProductByProject(String projectName) {
 		return namedParaJdbcTemplate.queryForObject(
 				ProductQueries.GET_PRODUCT_BY_PROJECT_NAME,
@@ -45,13 +47,11 @@ public class ProductDAOImpl implements ProductDAO {
 				new ProductMapper());
 	}
 
-	@Override
 	public Number addProduct(Product product) {
 		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(product);
 		return productInsert.executeAndReturnKey(parameterSource);
 	}
 
-	@Override
 	public List<Product> getProjectProducts(long projectId) {
 		List<Product> productList = new ArrayList<Product>();
 		namedParaJdbcTemplate.query(ProductQueries.GET_PROJECT_PRODUCTS,
@@ -60,7 +60,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return productList;
 	}
 
-	@Override
 	public Map<Long, List<Product>> getProjectsProducts(List<Long> projectIds) {
 		Map<Long, List<Product>> projectsProductsMap = new HashMap<Long, List<Product>>();
 		List<Product> productList = new ArrayList<Product>();
@@ -89,7 +88,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return projectsProductsMap;
 	}
 
-	@Override
 	public boolean checkProductExistsWithName(String productName) {
 		boolean isExists = namedParaJdbcTemplate.queryForObject(
 				ProductQueries.CHECK_PRODUCT_EXISTS_NAME,
@@ -98,7 +96,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return isExists;
 	}
 
-	@Override
 	public boolean checkProductExistsWithVersion(String productName,
 			String version) {
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -111,7 +108,6 @@ public class ProductDAOImpl implements ProductDAO {
 		return isExists;
 	}
 
-	@Override
 	public Product getProductById(Long productId) throws Exception {
 		Product product = null;
 		try {

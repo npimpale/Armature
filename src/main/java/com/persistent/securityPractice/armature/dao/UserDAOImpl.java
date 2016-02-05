@@ -13,9 +13,14 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.sql.DataSource;
-import javax.swing.tree.RowMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
 import com.persistent.securityPractice.armature.dao.mapper.UserMapper;
@@ -47,7 +52,6 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 
-	@Override
 	public void updateUser(User updatedUser) {
 		// TODO Auto-generated method stub
 
@@ -190,7 +194,6 @@ public class UserDAOImpl implements UserDAO {
 				UserQueries.GET_USER_PASSWORD_SALT, new MapSqlParameterSource(
 						"userName", userName),
 				new RowMapper<Map<String, String>>() {
-					@Override
 					public Map<String, String> mapRow(ResultSet rs, int arg1)
 							throws SQLException {
 						Map<String, String> resultsMap = new HashMap<String, String>();

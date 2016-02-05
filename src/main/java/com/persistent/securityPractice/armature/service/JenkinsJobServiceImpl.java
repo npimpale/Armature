@@ -116,7 +116,7 @@ public class JenkinsJobServiceImpl implements JenkinsJobService {
 			inputSource.setCharacterStream(new StringReader(line));
 
 			org.w3c.dom.Document document = db.parse(inputSource);
-			result = document.getDocumentElement().getTextContent();
+			result = document.getDocumentElement().getNodeValue();
 			System.out.println("Result is: " + result);
 
 		} catch (ParserConfigurationException e) {

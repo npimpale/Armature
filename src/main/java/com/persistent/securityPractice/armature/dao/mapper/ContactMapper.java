@@ -3,15 +3,13 @@ package com.persistent.securityPractice.armature.dao.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.tree.RowMapper;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.persistent.securityPractice.armature.dto.Contact;
 
 public class ContactMapper implements RowMapper<Contact> {
 
-	@Override
 	public Contact mapRow(ResultSet rs, int arg1) throws SQLException {
-		// TODO Auto-generated method stub
 		Contact contact = new Contact();
 		contact.setId(rs.getLong("id"));
 		contact.setProject_id(rs.getLong("project_id"));

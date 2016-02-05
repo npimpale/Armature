@@ -2,16 +2,14 @@ package com.persistent.securityPractice.armature.dao.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.persistent.securityPractice.securityscanner.bean.Product;
-import com.persistent.securityPractice.securityscanner.bean.REPOSITORIES;
+import com.persistent.securityPractice.armature.dto.Product;
+import com.persistent.securityPractice.armature.dto.REPOSITORIES;
 
 public class ProductMapper implements RowMapper<Product> {
 
-	@Override
 	public Product mapRow(ResultSet rs, int arg1) throws SQLException {
 		Product product = new Product();
 		product.setId(rs.getLong("id"));

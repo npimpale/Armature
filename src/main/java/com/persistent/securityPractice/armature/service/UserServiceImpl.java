@@ -76,13 +76,11 @@ public class UserServiceImpl implements UserService {
 		return projectList;
 	}
 
-	@Override
 	public Map<String, String> getUserDbPasswordAndSalt(String userName) {
 		Map<String, String> passwordAndSalt = userDao.getUserPasswordAndSalt(userName);
 		return passwordAndSalt;
 	}
 
-	@Override
 	public User getUserByUser(Long userId) throws Exception {
 		User user = null;
 		try{
@@ -93,7 +91,6 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	@Override
 	public boolean isFirstLogin(String userName) {
 		return userDao.isFirstLogin(userName);
 	}

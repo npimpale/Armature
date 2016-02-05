@@ -5,6 +5,9 @@ import java.sql.Types;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
 import com.persistent.securityPractice.armature.dto.Assessment;
@@ -26,7 +29,6 @@ public class AssessmentDAOImpl implements AssessmentDAO {
 		this.npJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	@Override
 	public Number createAssessment(Assessment assessment) throws Exception {
 		Number id = null;
 		BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(
@@ -38,7 +40,6 @@ public class AssessmentDAOImpl implements AssessmentDAO {
 		return id;
 	}
 
-	@Override
 	public long updateAssessment(Assessment assessment) {
 		long id = 0;
 		BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(

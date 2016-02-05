@@ -5,6 +5,10 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
 import com.persistent.securityPractice.armature.dao.mapper.ContactMapper;
@@ -28,7 +32,6 @@ public class ContactDAOImpl implements ContactDAO {
 		this.npJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	@Override
 	public Contact getContactByProduct(long productId) {
 		Contact contact = npJdbcTemplate.queryForObject(
 				ContactQueries.GET_CONTACT_BY_PRODUCTID,
@@ -37,7 +40,6 @@ public class ContactDAOImpl implements ContactDAO {
 		return contact;
 	}
 
-	@Override
 	public Contact getContactByProduct(String productName) {
 		Contact contact = npJdbcTemplate.queryForObject(
 				ContactQueries.GET_CONTACT_BY_PRODUCTNAME,
@@ -46,7 +48,6 @@ public class ContactDAOImpl implements ContactDAO {
 		return contact;
 	}
 
-	@Override
 	public List<Contact> getContactsByUser(long userId) {
 		List<Contact> contactList = npJdbcTemplate.query(
 				ContactQueries.GET_CONTACTS_BY_USERID,
@@ -55,7 +56,6 @@ public class ContactDAOImpl implements ContactDAO {
 		return contactList;
 	}
 
-	@Override
 	public List<Contact> getContactsByProductIds(List<Long> productIDList) {
 		List<Contact> contactList = npJdbcTemplate.query(
 				ContactQueries.GET_CONTACTS_BY_PRODUCTIDS,
@@ -64,7 +64,6 @@ public class ContactDAOImpl implements ContactDAO {
 		return contactList;
 	}
 
-	@Override
 	public Number addContact(Contact contact) throws Exception {
 		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(contact);
 		return contactInsert.executeAndReturnKey(parameterSource);

@@ -15,6 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import org.w3c.dom.Document;
@@ -48,9 +49,9 @@ public class XMLParserServiceImpl implements XMLParserService {
 
 			// get url element by id
 			Node url = doc.getElementsByTagName("url").item(0);
-			System.out.println("url textContent:- " + url.getTextContent());
+			System.out.println("url textContent:- " + url.getNodeValue());
 			// "git@github.com:watir/watir-webdriver.git"
-			url.setTextContent(product.getUrl());
+			url.setNodeValue(product.getUrl());
 
 			// For time Trigger
 			// Keeping this commented as it is needed later.

@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class UserUtility {
 	
 	public static String createHashedPassword(String userPassword, String salt) {

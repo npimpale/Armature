@@ -10,7 +10,6 @@ public class QueueServiceImpl implements QueueService {
 	
 	private QueueSender sender;
 
-	@Override
 	public boolean addAssessmentToQueue(String zipFilePath,
 			Assessment assessment) {
 		// TODO Auto-generated method stub

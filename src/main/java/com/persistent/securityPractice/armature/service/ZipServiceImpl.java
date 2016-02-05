@@ -17,7 +17,6 @@ public class ZipServiceImpl implements ZipService {
 	private static String SOURCE;
 	private static String DESTINATION;
 
-	@Override
 	public String createSourceCodeZip(String source, String destination,
 			String zipFileName) {
 		// TODO Auto-generated method stub

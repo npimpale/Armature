@@ -96,7 +96,6 @@ public class ProjectServiceImpl implements ProjectService {
 		return exists;
 	}
 
-	@Override
 	public Project getProjectByProject(Long projectId) throws Exception {
 		Project project = null;
 		try {

@@ -5,11 +5,10 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.persistent.securityPractice.securityscanner.bean.Project;
+import com.persistent.securityPractice.armature.dto.Project;
 
 public class ProjectMapper implements RowMapper<Project> {
 
-	@Override
 	public Project mapRow(ResultSet rs, int arg1) throws SQLException {
 		Project project = new Project();
 		project.setId(rs.getLong("id"));

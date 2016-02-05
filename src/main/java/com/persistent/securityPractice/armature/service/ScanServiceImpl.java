@@ -61,7 +61,6 @@ public class ScanServiceImpl implements ScanService {
 		this.assessmentService = assessmentServiceImpl;
 	}
 
-	@Override
 	public Boolean scan(Assessment assessment) throws Exception {
 		REPOSITORIES repo = null;
 		int responseCode = 0;

@@ -9,6 +9,9 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
 import com.persistent.securityPractice.armature.dao.mapper.ProjectMapper;
@@ -31,7 +34,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		this.namedParaJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	@Override
 	public List<Project> getProjectsByUser(long id) {
 		List<Project> projectList = new ArrayList<Project>();
 		projectList.addAll(namedParaJdbcTemplate.query(
@@ -40,7 +42,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return projectList;
 	}
 
-	@Override
 	public List<Project> getProjectsByUser(String userName) {
 		List<Project> projectList = namedParaJdbcTemplate.query(
 				ProjectQueries.GET_PROJS_BY_USER_NAME,
@@ -49,7 +50,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return projectList;
 	}
 
-	@Override
 	public Number addProject(Project project) throws Exception {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		
@@ -63,7 +63,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return projectInsert.executeAndReturnKey(parameters);
 	}
 
-	@Override
 	public boolean checkProjectExists(String projectName) {
 		// TODO Auto-generated method stub
 		boolean exists = namedParaJdbcTemplate.queryForObject(
@@ -72,7 +71,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return exists;
 	}
 
-	@Override
 	public Project getProjectByProject(Long projectId) throws Exception {
 		Project project = null;
 		try {

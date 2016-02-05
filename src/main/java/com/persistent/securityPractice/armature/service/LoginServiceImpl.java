@@ -103,12 +103,10 @@ public class LoginServiceImpl implements LoginService {
 		return isAuthenticated;
 	}
 
-	@Override
 	public boolean isFirstLogin(String userName) {
 		return userService.isFirstLogin(userName);
 	}
 
-	@Override
 	public String getCSRFToken(String userName) {
 		String hashtext = null; 
 		String csrfToken = userName + userService.getUserDbPasswordAndSalt(userName).get("salt");
